@@ -68,9 +68,9 @@ The video processing pipeline is basically a repetation of step 7 from frame to 
 
 The original video can be accessed here: 
 
-The project video: https://drive.google.com/open?id=0B8g4mCBBmkoaejdsV3d5WkdiWHc
+The project video: https://drive.google.com/open?id=0B8g4mCBBmkoaajFKdTVaalZxNms
 
-The challenge video: https://drive.google.com/open?id=0B8g4mCBBmkoacGF6TFhmUmVBZlE
+The challenge video: https://drive.google.com/open?id=0B8g4mCBBmkoaeVRfeVlpNTJtS3M
 
 ### Reflections
 This project pipeline has a robust performance on both the normal and challenge videos. It is capable of dealing with shadows in the second video. However, it does not perform very well on the even harder video, as the brightness is quite high on most of the images, which implies that the choosing of color space should be more robust in order to cope with more brightness/weather conditions. Especially for the third video, a color space that performs well on bright road surface should be combined into the binary thresholding. 
