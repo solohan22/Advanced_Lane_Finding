@@ -36,6 +36,7 @@ The L Channel from the LUV color space with threshold of (210,255), which identi
 - Identify peaks in the histogram to determine location of lane lines.
 - Identify all non zero pixels close to histogram peaks using `numpy.nonzero()`.
 - Fit a polynomial to lanes using `numpy.polyfit()`.
+
 ![png](./output_images/fit.png)
 
 ### Steps 5: calculate vehicle position from the center of road
