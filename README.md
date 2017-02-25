@@ -1,6 +1,6 @@
 # Project 4 - Advanced Lane Finding
 
-The steps of this project are the following:
+The steps of this project are as following:
 - Step 1: Distortion correction using a calculated camera calibration matrix and distortion coefficients
 - Step 2: Perspective transform to warp the image to a birds eye view perspective of the lane lines
 - Step 3: Color thresholds to create a binary image which isolates the pixels of lane lines
