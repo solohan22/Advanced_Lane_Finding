@@ -26,8 +26,8 @@ The goal of this step is to transform the undistorted image to a "birds eye view
 ### Step 3: Binary Threshold
 Convert the warped image to different color spaces and create binary thresholded images which try to focus on detecting the lane lines. Through many experiments and inspiration from Udacity forum, I use the following combined color channels and thresholds to identify the lane lines:
 
-The B channel from the Lab color space, with threshold of (150,200), which identifies yellow lines well but ignores white ones.
-The L Channel from the LUV color space with threshold of (220,255), which identifies white lines well but ignores yellow ones.
+The B channel from the Lab color space, with threshold of (150,215), which identifies yellow lines well but ignores white ones.
+The L Channel from the LUV color space with threshold of (210,255), which identifies white lines well but ignores yellow ones.
 
 ![png](./output_images/binary.png)
 
@@ -38,14 +38,13 @@ The L Channel from the LUV color space with threshold of (220,255), which identi
 - Fit a polynomial to lanes using `numpy.polyfit()`.
 
 ### Steps 5: calculate vehicle position from the center of road
-
-- Calculat the average of the x intercepts from two polynomials `position = (rightx_int+leftx_int)/2`
-- Calculat the distance from center: `distance_from_center = abs(image_width/2 - position)`
-- If the horizontal position of the vehicle was greater than `image_width/2`, than the vehicle is on the left of center, otherwise right.
-- Convert pixels to meters by multiplying the number of pixels by `3.7/700` to get the distance from center.
+I wrote a function distance(left_fit,right_fit) to calculate the postion.
+- Calculat get the midpoint of the lane `mid_lane = (left_fitx[0]+right_fitx[0])/2`
+- Calculat the distance from center: `distance=abs((mid_image - mid_lane)*xm_per_pix) `
+- Also multiplying the number of pixels by `xm_per_pix=3.7/700`.
 
 ### Steps 6: calculate radius of curvature:
-The following code is used to compute the radius of curvature and take the average of left and right curve radiuses as final one:
+I wrote a function curvature(left_fit,right_fit) to calculate the raidus of curvature, which basically followed the course codes as follows:
 
 ```
 ym_per_pix = 30./720 # meters per pixel in y dimension
@@ -64,10 +63,6 @@ Plot the polynomials on to the warped image, fill the space in-between to highli
 
 ## Video Processing
 The video processing pipeline is basically a repetation of step 7 from frame to frame. But to make the output smooth, I averaged the coefficients of the polynomials for each lane line over 10 frames. Specifically, classes for both the left and right lane lines are created to store necessary attributes. The pipeline also search recent frames for previously found lane lines and are able to search the entire image if no previous lines were found.
-
-|Project Video|Challenge Video|
-|-------------|-------------|
-|![png](./output_images/project.gif)|![png](./output_images/challenge.gif)|
 
 The original video can be accessed here: 
 
