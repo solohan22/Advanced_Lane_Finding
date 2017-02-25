@@ -36,6 +36,7 @@ The L Channel from the LUV color space with threshold of (210,255), which identi
 - Identify peaks in the histogram to determine location of lane lines.
 - Identify all non zero pixels close to histogram peaks using `numpy.nonzero()`.
 - Fit a polynomial to lanes using `numpy.polyfit()`.
+![png](./output_images/fit.png)
 
 ### Steps 5: calculate vehicle position from the center of road
 I wrote a function distance(left_fit,right_fit) to calculate the postion.
@@ -59,7 +60,7 @@ right_curverad = ((1 + (2*right_fit_cr[0]*np.max(lefty) + right_fit_cr[1])**2)**
 
 Plot the polynomials on to the warped image, fill the space in-between to highlight the lane. Use perspective trasform again to warp the image from birds eye back to original perspective. Lastly print the distance and radius of curvature to the annotated image.
 
-![png](./output_images/filled.png)
+![png](./output_images/fill.png)
 
 ## Video Processing
 The video processing pipeline is basically a repetation of step 7 from frame to frame. But to make the output smooth, I averaged the coefficients of the polynomials for each lane line over 10 frames. Specifically, classes for both the left and right lane lines are created to store necessary attributes. The pipeline also search recent frames for previously found lane lines and are able to search the entire image if no previous lines were found.
